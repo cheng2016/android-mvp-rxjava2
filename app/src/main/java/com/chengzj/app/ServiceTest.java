@@ -1,6 +1,7 @@
 package com.chengzj.app;
 
 import com.chengzj.app.data.source.NewsList;
+import com.chengzj.app.data.source.remote.HttpApi;
 import com.chengzj.app.data.source.remote.HttpFactory;
 import com.google.gson.Gson;
 
@@ -16,7 +17,7 @@ import io.reactivex.functions.Consumer;
 public class ServiceTest {
 
     public static void main(String[] args) throws Exception {
-        IMainService iMainService = HttpFactory.createRetrofit2(IMainService.class);
+        HttpApi iMainService = HttpFactory.createRetrofit2(HttpApi.class);
         Disposable disposable = iMainService.getNewsList("L295","10")
                 .subscribe(new Consumer<NewsList>() {
                     @Override
