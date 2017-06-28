@@ -24,6 +24,28 @@
   ​
 
 
+## MVP
+
+MVP 模式的核心思想
+
+**MVP 把 Activity 中的 UI 逻辑抽象成 View 接口，把业务逻辑抽象成 Presenter 接口，Model 类还是原来的Model。**
+
+![](image/78153339_2.jpg)
+
+主要优点
+
+- **分离视图层和业务层，降低耦合**
+- **Activity 代码变的简洁**
+- **方便进行单元测试**
+- **避免 Activity 的内存泄露**
+
+
+
+## MVP Use
+
+![](image/78153339_3.jpg)
+
+
 
 ## Code
 
@@ -68,11 +90,6 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_main;
-    }
-
-    @Override
-    protected void init(View view, Bundle savedInstanceState) {
-
     }
 
     @Override
@@ -147,7 +164,7 @@ public class MainPresenter implements MainContract.Presenter{
 
 [UtilCode](https://github.com/cheng2016/AndroidUtilCode)
 
-
+[MVP模式简单易懂的介绍方式](http://www.360doc.com/content/16/0817/14/26794451_583847256.shtml)
 
 ## Contact Me
 
