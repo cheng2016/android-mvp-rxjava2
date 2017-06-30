@@ -21,6 +21,8 @@
 
 - utilcode
 
+- logger
+
   ​
 
 
@@ -59,7 +61,6 @@ MVP 模式的核心思想
 ```
 public interface BasePresenter {
     void subscribe();
-
     void unsubscribe();
 }
 ```
@@ -71,14 +72,11 @@ public interface BaseView<T> {
 ```
 
 ```
-public class MainContract {
+public interface MainContract {
     interface View extends BaseView<Presenter>{
         void showNewList(NewsList newsList);
     }
-
-    interface Presenter extends BasePresenter{
-
-    }
+    interface Presenter extends BasePresenter{ ... }
 }
 ```
 
@@ -95,9 +93,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_main;
-    }
+    protected int getLayoutId() { return R.layout.fragment_main; }
 
     @Override
     public void onResume() {
@@ -112,9 +108,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     }
 
     @Override
-    public void setPresenter(MainContract.Presenter presenter) {
-        mMainPresenter = presenter;
-    }
+    public void setPresenter(MainContract.Presenter presenter) {mMainPresenter = presenter;}
 
     @Override
     public void showNewList(NewsList newsList) {
@@ -137,14 +131,10 @@ public class MainPresenter implements MainContract.Presenter{
     }
 
     @Override
-    public void subscribe() {
-        getNewList();
-    }
+    public void subscribe() { getNewList(); }
 
     @Override
-    public void unsubscribe() {
-        mCompositeDisposable.clear();
-    }
+    public void unsubscribe() { mCompositeDisposable.clear(); }
 
     public void getNewList() {
         Disposable disposable = mHttpApi.getNewsList("L295","10")
@@ -172,6 +162,10 @@ public class MainPresenter implements MainContract.Presenter{
 [UtilCode](https://github.com/cheng2016/AndroidUtilCode)
 
 [MVP模式简单易懂的介绍方式](http://www.360doc.com/content/16/0817/14/26794451_583847256.shtml)
+
+[logger](https://github.com/orhanobut/logger)
+
+
 
 ## Contact Me
 
