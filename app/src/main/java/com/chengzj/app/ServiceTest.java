@@ -1,6 +1,6 @@
 package com.chengzj.app;
 
-import com.chengzj.app.data.source.NewsList;
+import com.chengzj.app.data.entity.NewsList;
 import com.chengzj.app.data.source.remote.HttpApi;
 import com.chengzj.app.data.source.remote.HttpFactory;
 import com.google.gson.Gson;

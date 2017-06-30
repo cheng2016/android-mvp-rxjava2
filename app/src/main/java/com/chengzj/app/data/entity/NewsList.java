@@ -1,4 +1,4 @@
-package com.chengzj.app.data.source;
+package com.chengzj.app.data.entity;
 
 import java.util.List;
 

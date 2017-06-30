@@ -22,7 +22,7 @@
  * <http://www.gnu.org/philosophy/why-not-lgpl.html>.
  */
 
-package com.chengzj.app.data.source;
+package com.chengzj.app.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;

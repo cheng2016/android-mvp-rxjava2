@@ -1,19 +1,15 @@
 package com.chengzj.app.module.main;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.chengzj.app.R;
 import com.chengzj.app.base.BaseFragment;
-import com.chengzj.app.data.source.NewsList;
+import com.chengzj.app.data.entity.NewsList;
 import com.google.gson.Gson;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by chengzj on 2017/6/17.

@@ -22,19 +22,43 @@
  * <http://www.gnu.org/philosophy/why-not-lgpl.html>.
  */
 
-package com.chengzj.app.data.source;
+package com.chengzj.app.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Description：GankData ( Android、iOS、前端、拓展资源、福利、休息视频 )
+ * Description：BaseGankData ( Gank数据的类型，无论是Android，还是福利，都是这样的数据 )
  * Created by：CaMnter
- * Time：2016-01-06 17:45
+ * Time：2016-01-03 17:28
  */
-public class GankData extends Error implements Serializable {
+public class BaseGankData implements Serializable {
 
-    @SerializedName("results") public ArrayList<BaseGankData> results;
+    // 发布人
+    @SerializedName("who") public String who;
+
+    // 发布时间
+    @SerializedName("publishedAt") public Date publishedAt;
+
+    // 标题
+    @SerializedName("desc") public String desc;
+
+    // 类型， 一般都是"福利"
+    @SerializedName("type") public String type;
+
+    // 图片url
+    @SerializedName("url") public String url;
+
+    // 是否可用
+    @SerializedName("used") public Boolean used;
+
+    // 对象id
+    @SerializedName("objectId") public String objectId;
+
+    // 创建时间
+    @SerializedName("createdAt") public Date createdAt;
+
+    // 更新时间
+    @SerializedName("updatedAt") public Date updatedAt;
 }
-

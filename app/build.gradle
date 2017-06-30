@@ -33,8 +33,10 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
-    //utils
+    //工具库utils
     compile 'com.blankj:utilcode:1.7.1'
+    //日志库logger
+    compile 'com.orhanobut:logger:2.1.1'
 
     // LeakCanary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$LEAKCANARY_VERSION"

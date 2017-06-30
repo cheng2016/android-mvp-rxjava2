@@ -1,7 +1,7 @@
 package com.chengzj.app.data.source.remote;
 
-import com.chengzj.app.data.source.GankDaily;
-import com.chengzj.app.data.source.NewsList;
+import com.chengzj.app.data.entity.GankDaily;
+import com.chengzj.app.data.entity.NewsList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
