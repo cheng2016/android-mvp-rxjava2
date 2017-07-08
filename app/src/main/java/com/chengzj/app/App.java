@@ -36,8 +36,8 @@ public class App extends BaseApplication{
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        initAppTool();
         initLogSystem();
+        initAppTool();
     }
 
     void initAppTool(){
