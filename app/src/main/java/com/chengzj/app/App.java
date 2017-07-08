@@ -42,9 +42,11 @@ public class App extends BaseApplication{
 
     void initAppTool(){
         if(LeakCanary.isInAnalyzerProcess(this)){
+            Logger.i("App LeakCanary %s","is return");
             return;
         }
         mRefWatcher = LeakCanary.install(this);
+        Logger.i("App LeakCanary %s","LeakCanary.install");
         //初始化工具类
         Utils.init(this);
     }
