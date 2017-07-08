@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-        RefWatcher refWatcher = App.getRefWatcher();
+        RefWatcher refWatcher = App.getRefWatcher(getActivity());
         refWatcher.watch(this);
     }
 
