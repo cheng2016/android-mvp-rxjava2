@@ -26,8 +26,9 @@ public class App extends BaseApplication{
 
     private RefWatcher mRefWatcher;
 
-    public static RefWatcher getRefWatcher(){
-        return mInstance.mRefWatcher;
+    public static RefWatcher getRefWatcher(Context context){
+        App app = (App) context.getApplicationContext();
+        return app.mRefWatcher;
     }
 
 
