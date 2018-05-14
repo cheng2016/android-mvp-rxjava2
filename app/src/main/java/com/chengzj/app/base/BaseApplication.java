@@ -10,7 +10,7 @@ import com.orhanobut.logger.Logger;
  */
 
 public class BaseApplication extends Application{
-    private final static String TAG = "BaseApplication";
+    private final static String TAG = "BaseApplication %s";
 
     @Override
     public void onCreate() {
