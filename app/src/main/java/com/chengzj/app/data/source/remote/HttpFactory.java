@@ -1,5 +1,7 @@
 package com.chengzj.app.data.source.remote;
 
+import android.util.Log;
+
 import com.blankj.utilcode.util.LogUtils;
 import com.chengzj.app.App;
 import com.chengzj.app.util.NetUtils;
@@ -14,6 +16,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -40,19 +43,25 @@ public class HttpFactory {
 
     private static OkHttpClient getOkClient(){
         //设置缓存路径
-//        File httpCacheDirectory = new File(App.getInstance().getCacheDir(), "okhttpCache");
-//        LogUtils.i(TAG, httpCacheDirectory.getAbsolutePath());
+        final File httpCacheDirectory = new File(App.getInstance().getCacheDir(), "okhttpCache");
+        Log.i(TAG, httpCacheDirectory.getAbsolutePath());
         //设置缓存 10M
-//        Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);   //缓存可用大小为10M
+        Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);   //缓存可用大小为10M
+
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .writeTimeout(30 * 1000, TimeUnit.MILLISECONDS)
                 .readTimeout(20 * 1000, TimeUnit.MILLISECONDS)
                 .connectTimeout(15 * 1000, TimeUnit.MILLISECONDS)
-//                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
-//                .cache(cache)
+                //设置拦截器，显示日志信息
+                .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                .cache(cache)
                 .build();
         return okHttpClient;
     }
+
+    private final static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private final static Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
         @Override
