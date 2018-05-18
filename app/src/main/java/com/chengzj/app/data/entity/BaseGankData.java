@@ -25,6 +25,7 @@
 package com.chengzj.app.data.entity;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 

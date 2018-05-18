@@ -17,7 +17,7 @@ import butterknife.Bind;
 
 public class MainFragment extends BaseFragment implements MainContract.View {
     MainContract.Presenter mMainPresenter;
-    @Bind(R.id.textView)
+    @Bind(R.id.message)
     TextView mTextView;
 
     public static MainFragment newInstance() {

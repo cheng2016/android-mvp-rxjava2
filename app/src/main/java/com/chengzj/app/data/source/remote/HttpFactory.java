@@ -2,7 +2,6 @@ package com.chengzj.app.data.source.remote;
 
 import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.chengzj.app.App;
 import com.chengzj.app.util.NetUtils;
 

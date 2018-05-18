@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "27.0.3"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.chengzj.app"
         minSdkVersion 15
@@ -25,24 +25,24 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     final SUPPORT_VERSION = '25.3.1'
-    final LEAKCANARY_VERSION = '1.5';
-
-    def leakCanary = "com.squareup.leakcanary:leakcanary-android-no-op:$LEAKCANARY_VERSION"
-
+//    compile "com.android.support:support-v4:$SUPPORT_VERSION"
     compile "com.android.support:appcompat-v7:$SUPPORT_VERSION"
     compile "com.android.support:design:$SUPPORT_VERSION"
+    compile "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    // LeakCanary
+    final LEAKCANARY_VERSION = '1.5';
+    def leakCanary = "com.squareup.leakcanary:leakcanary-android-no-op:$LEAKCANARY_VERSION"
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$LEAKCANARY_VERSION"
+    releaseCompile leakCanary
+    testCompile leakCanary
 
     //工具库utils
     compile 'com.blankj:utilcode:1.7.1'
     //日志库logger
     compile 'com.orhanobut:logger:2.1.1'
-
-    // LeakCanary
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$LEAKCANARY_VERSION"
-    releaseCompile leakCanary
-    testCompile leakCanary
 
     //dex
     compile 'com.android.support:multidex:1.0.3'
@@ -61,10 +61,11 @@ dependencies {
     //RxTools
     compile 'com.github.vondear:RxTools:v1.7.6.8'
 
-
-    //圆角头像
-    compile 'de.hdodenhof:circleimageview:2.2.0'
     //eventbus
-//    compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'org.greenrobot:eventbus:3.1.1'
 
+    //UI类库
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.jcodecraeer:xrecyclerview:1.5.9'
+    compile 'devlight.io:navigationtabbar:1.2.5'
 }

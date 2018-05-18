@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_preview">
+        <item>#303F9F</item>
+        <item>#303F9F</item>
+        <item>#303F9F</item>
+        <item>#303F9F</item>
+        <item>#303F9F</item>
+    </string-array>
+</resources>

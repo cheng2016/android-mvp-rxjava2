@@ -1,14 +1,24 @@
 package com.chengzj.app.module.main;
 
-import android.support.v4.app.FragmentManager;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 
 import com.chengzj.app.R;
 import com.chengzj.app.base.BaseActivity;
+import com.chengzj.app.base.BaseFragment;
 
-public class MainActivity extends BaseActivity
-{
+import java.util.ArrayList;
+
+import butterknife.Bind;
+import devlight.io.library.ntb.NavigationTabBar;
+
+public class MainActivity extends BaseActivity {
+    @Bind(R.id.vp_horizontal_ntb)
+    ViewPager viewPager;
+
+    private BaseFragment[] fragments = new BaseFragment[3];
+
 
     @Override
     protected int getLayoutId() {
@@ -17,9 +27,60 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        MainFragment mainFragment = MainFragment.newInstance();
-        FragmentManager fm = this.getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.content,mainFragment).commit();
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setAdapter(new MainPagerFragmentAdapter(getSupportFragmentManager(), fragments));
+
+        final String[] colors = getResources().getStringArray(R.array.default_preview);
+        final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb_horizontal);
+        final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_dashboard_black_24dp),
+                        Color.parseColor(colors[0]))
+//                        .selectedIcon(getResources().getDrawable(R.drawable.ic_dashboard_black_24dp))
+                        .title(getString(R.string.title_dashboard))
+//                        .badgeTitle("NTB")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_home_black_24dp),
+                        Color.parseColor(colors[1]))
+//                        .selectedIcon(getResources().getDrawable(R.drawable.ic_home_black_24dp))
+                        .title(getString(R.string.title_home))
+//                        .badgeTitle("with")
+                        .build()
+        );
+
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_notifications_black_24dp),
+                        Color.parseColor(colors[2]))
+//                        .selectedIcon(getResources().getDrawable(R.drawable.ic_notifications_black_24dp))
+                        .title(getString(R.string.title_notifications))
+//                        .badgeTitle("with")
+                        .build()
+        );
+
+        navigationTabBar.setModels(models);
+        navigationTabBar.setTitleMode(NavigationTabBar.TitleMode.ALL);
+        navigationTabBar.setViewPager(viewPager, 1);
+        navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                navigationTabBar.getModels().get(position).hideBadge();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int state) {
+
+            }
+        });
     }
+
 }
