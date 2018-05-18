@@ -20,6 +20,6 @@ public class MainActivity extends BaseActivity
         MainFragment mainFragment = MainFragment.newInstance();
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.content,mainFragment);
+        ft.add(R.id.content,mainFragment).commit();
     }
 }
