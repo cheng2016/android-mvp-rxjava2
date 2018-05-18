@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
         navigationTabBar.setModels(models);
         navigationTabBar.setTitleMode(NavigationTabBar.TitleMode.ALL);
-        navigationTabBar.setViewPager(viewPager, 1);
+        navigationTabBar.setViewPager(viewPager, 0);
         navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {

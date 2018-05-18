@@ -7,7 +7,7 @@ import android.os.Handler;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chengzj.app.R;
 import com.chengzj.app.base.BaseActivity;
-import com.chengzj.app.module.main.MainActivity;
+import com.chengzj.app.module.login.LoginActivity;
 
 public class SplashActivity extends BaseActivity{
     @Override
@@ -24,7 +24,7 @@ public class SplashActivity extends BaseActivity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent().setClass(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent().setClass(SplashActivity.this, LoginActivity.class));
                 finish();
             }
         },2000);
