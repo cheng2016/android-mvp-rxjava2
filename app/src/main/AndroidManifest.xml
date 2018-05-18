@@ -10,7 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.main.MainActivity">
+        <activity android:name=".module.main.MainActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+
+        <activity
+            android:name=".module.splash.SplashActivity"
+            android:launchMode="standard"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

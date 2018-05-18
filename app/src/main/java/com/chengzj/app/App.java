@@ -31,7 +31,6 @@ public class App extends BaseApplication{
         return app.mRefWatcher;
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();

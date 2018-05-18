@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chengzj.app.R;
 import com.chengzj.app.base.BaseActivity;
 import com.chengzj.app.base.BaseFragment;
@@ -83,4 +84,20 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+
+    //双击返回键 退出
+    //----------------------------------------------------------------------------------------------
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            ToastUtils.showShort("再次点击返回键退出");
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
 }
