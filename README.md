@@ -25,15 +25,12 @@
 
 - RxTools
 
-- Multidex
-
 - XRecycleview
 
 - Navigationtabbar
 
-- Circleimageview
-
   ​
+
 
 
 ## MVP
