@@ -3,7 +3,9 @@ package com.chengzj.app.module.main;
 import com.chengzj.app.data.entity.NewsList;
 import com.chengzj.app.data.source.remote.HttpApi;
 import com.chengzj.app.data.source.remote.HttpFactory;
+import com.orhanobut.logger.Logger;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
@@ -38,15 +40,31 @@ public class MainPresenter implements MainContract.Presenter{
     }
 
     public void getNewList() {
-        Disposable disposable = mHttpApi.getNewsList("L295","10")
-                .subscribeOn(Schedulers.io())
+        mHttpApi.getNewsList("L295","10")
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<NewsList>() {
+                .subscribe(new Observer<NewsList>() {
                     @Override
-                    public void accept(@NonNull NewsList newsList) throws Exception {
+                    public void onSubscribe(Disposable d) {
+                        mCompositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(NewsList newsList) {
                         view.showNewList(newsList);
+                        Logger.d("onNext");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
-        mCompositeDisposable.add(disposable);
+
     }
 }

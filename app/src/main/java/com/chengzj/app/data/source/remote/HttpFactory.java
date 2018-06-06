@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HttpFactory {
-    public final static String TAG = "HttpFactory";
+    public static final  String TAG = "HttpFactory";
 
     private HttpFactory() {
     }
@@ -45,7 +45,7 @@ public class HttpFactory {
         final File httpCacheDirectory = new File(App.getInstance().getCacheDir(), "okhttpCache");
         Log.i(TAG, httpCacheDirectory.getAbsolutePath());
         //设置缓存 10M
-        Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);   //缓存可用大小为10M
+//        Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);   //缓存可用大小为10M
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .writeTimeout(30 * 1000, TimeUnit.MILLISECONDS)
@@ -53,16 +53,16 @@ public class HttpFactory {
                 .connectTimeout(15 * 1000, TimeUnit.MILLISECONDS)
                 //设置拦截器，显示日志信息
                 .addInterceptor(httpLoggingInterceptor)
-                .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
-                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
-                .cache(cache)
+//                .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+//                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+//                .cache(cache)
                 .build();
         return okHttpClient;
     }
 
-    private final static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+    private static final  HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    private final static Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
+    private static final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
@@ -76,16 +76,14 @@ public class HttpFactory {
             }
 
             Response originalResponse = chain.proceed(request);
-
             switch (netWorkState) {
-                case NetUtils.NETWORK_MOBILE://mobile network 情况下缓存一分钟
-                    int maxAge = 60;
+                case NetUtils.NETWORK_MOBILE://moblie network 情况下缓存15s
+                    int maxAge = 0;
                     return originalResponse.newBuilder()
                             .removeHeader("Pragma")
                             .removeHeader("Cache-Control")
                             .header("Cache-Control", "public, max-age=" + maxAge)
                             .build();
-
                 case NetUtils.NETWORK_WIFI://wifi network 情况下不使用缓存
                     maxAge = 0;
                     return originalResponse.newBuilder()

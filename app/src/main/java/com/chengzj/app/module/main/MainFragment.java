@@ -1,6 +1,7 @@
 package com.chengzj.app.module.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,14 +38,14 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         mMainPresenter.subscribe();
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         mMainPresenter.unsubscribe();
     }
 

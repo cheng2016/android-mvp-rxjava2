@@ -2,12 +2,12 @@ package com.chengzj.app.module.main;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chengzj.app.R;
 import com.chengzj.app.base.BaseActivity;
-import com.chengzj.app.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.vp_horizontal_ntb)
     ViewPager viewPager;
 
-    private BaseFragment[] fragments = new BaseFragment[3];
+    Fragment[] fragments = new Fragment[3];
 
 
     @Override
@@ -28,8 +28,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(new MainPagerFragmentAdapter(getSupportFragmentManager(), fragments));
+//        viewPager.setOffscreenPageLimit(3);
+        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragments));
 
         final String[] colors = getResources().getStringArray(R.array.default_preview);
         final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb_horizontal);

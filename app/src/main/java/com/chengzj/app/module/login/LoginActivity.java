@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Bind(R.id.password)
     EditText passwordView;
 
-    private String email, password;
-
+    String email;
+    String password;
     RxDialogLoading rxDialogLoading;
 
     @Override
@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.email_sign_in_button:
                 email = emailView.getText().toString().trim();
@@ -59,10 +60,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.logo_img:
                 login();
                 break;
+            default:
+                break;
         }
     }
 
-    private void login(){
+    private void login() {
         rxDialogLoading = new RxDialogLoading(LoginActivity.this);
         rxDialogLoading.show();
         new Handler().postDelayed(new Runnable() {
