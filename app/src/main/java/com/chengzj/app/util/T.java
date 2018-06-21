@@ -12,7 +12,7 @@ import android.widget.Toast;
  */
 
 
-public class ToastUtils {
+public class T {
 	// Toast
 	private static Toast toast;
 
