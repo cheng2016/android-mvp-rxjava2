@@ -19,6 +19,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * Created by chengzj on 2018/6/21.
+ * 文件日志类
+ */
 public class Logger {
     private static FileOutputStream fos;
     private static OutputStreamWriter osWriter;
