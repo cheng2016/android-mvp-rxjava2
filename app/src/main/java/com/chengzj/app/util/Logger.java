@@ -23,7 +23,7 @@ import java.util.Calendar;
  * Created by chengzj on 2018/6/21.
  * 文件日志类
  */
-public class L {
+public class Logger {
     private static FileOutputStream fos;
     private static OutputStreamWriter osWriter;
     private static BufferedWriter writer;
@@ -297,11 +297,11 @@ public class L {
     public static final void initialize(Context appCtx, boolean isWriter, Level level) {
         currentLevel = level;
         if (level == Level.CLOSE) {
-            L.isWriter = false;
+            Logger.isWriter = false;
             return;
         }
-        L.isWriter = isWriter;
-        if (!L.isWriter) {//不保存日志到文件
+        Logger.isWriter = isWriter;
+        if (!Logger.isWriter) {//不保存日志到文件
             return;
         }
         String logFoldPath;
@@ -316,7 +316,7 @@ public class L {
         if (!(flag = logFold.exists()))
             flag = logFold.mkdirs();
         if (!flag) {
-            L.isWriter = false;
+            Logger.isWriter = false;
             return;
         }
         logFilePath = logFoldPath + FILE_NAME_FORMAT.format(Calendar.getInstance().getTime()) + ".log";
@@ -325,16 +325,16 @@ public class L {
             if (!(flag = logFile.exists())) {
                 flag = logFile.createNewFile();
             }
-            L.isWriter = isWriter && flag;
+            Logger.isWriter = isWriter && flag;
 
-            if (L.isWriter) {
+            if (Logger.isWriter) {
                 fos = new FileOutputStream(logFile);
                 osWriter = new OutputStreamWriter(fos);
                 writer = new BufferedWriter(osWriter);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            L.isWriter = false;
+            Logger.isWriter = false;
         }
     }
 
