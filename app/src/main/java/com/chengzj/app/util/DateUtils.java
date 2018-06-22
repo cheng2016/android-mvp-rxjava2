@@ -3,6 +3,9 @@ package com.chengzj.app.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Created by chengzj on 2017/6/22.
+ */
 public class DateUtils {
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 

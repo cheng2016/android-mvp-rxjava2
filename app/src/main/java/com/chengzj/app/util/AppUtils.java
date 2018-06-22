@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Created by Michael Smith on 2016/8/2.
  */
-
 public class AppUtils {
     public static int getIntMetaData(Context context, String key){
         try {

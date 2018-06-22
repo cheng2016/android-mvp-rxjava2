@@ -22,6 +22,9 @@ import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+/**
+ * Created by chengzj on 2017/6/22.
+ */
 public class ActivityUtils {
 
     public static @NonNull
