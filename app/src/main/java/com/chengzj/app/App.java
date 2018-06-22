@@ -37,6 +37,7 @@ public class App extends BaseApplication{
         mInstance = this;
         initLogSystem();
         initAppTool();
+        com.chengzj.app.util.Logger.initialize(this,true, com.chengzj.app.util.Logger.Level.VERBOSE);
     }
 
     void initAppTool(){
